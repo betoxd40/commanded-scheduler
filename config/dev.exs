@@ -12,3 +12,7 @@ config :commanded_scheduler, Commanded.Scheduler.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost"
+
+# Configures the event store database
+config :commanded_scheduler, Commanded.Scheduler.EventStore,
+  serializer: Commanded.Serialization.JsonSerializer

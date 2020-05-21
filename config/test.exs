@@ -20,5 +20,6 @@ config :commanded_scheduler, Commanded.Scheduler.Repo,
 
 config :commanded, event_store_adapter: Commanded.EventStore.Adapters.InMemory
 
-config :commanded, Commanded.EventStore.Adapters.InMemory,
+# Configures the event store database
+config :commanded_scheduler, Commanded.Scheduler.EventStore,
   serializer: Commanded.Serialization.JsonSerializer
