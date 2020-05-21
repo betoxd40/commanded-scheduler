@@ -8,6 +8,7 @@ defmodule Commanded.Scheduler.Application do
       {Task.Supervisor, [name: Commanded.Scheduler.JobRunner]},
       # Commanded application
       Commanded.Scheduler.App,
+      
       Commanded.Scheduler.Repo,
       Commanded.Scheduler.JobSupervisor,
       Commanded.Scheduler.Jobs,
