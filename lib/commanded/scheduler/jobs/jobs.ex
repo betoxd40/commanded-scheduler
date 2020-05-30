@@ -79,6 +79,11 @@ defmodule Commanded.Scheduler.Jobs do
   end
 
   def handle_call({:schedule_once, name, module, args, run_at}, _from, state) do
+    IO.puts("********************************************* handle_callhandle_call")
+    IO.inspect(name)
+    IO.inspect(module)
+    IO.inspect(args)
+
     reply =
       schedule_job(
         name,
@@ -87,6 +92,8 @@ defmodule Commanded.Scheduler.Jobs do
         state
       )
 
+    IO.inspect(reply)
+    IO.puts("********************************************* handle_callhandle_call")
     {:reply, reply, state}
   end
 
