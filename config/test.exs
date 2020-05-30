@@ -20,5 +20,12 @@ config :commanded_scheduler, Commanded.Scheduler.Repo,
 
 config :commanded, event_store_adapter: Commanded.EventStore.Adapters.InMemory
 
+config :commanded_scheduler, Commanded.Scheduler.EventStore,
+  serializer: Commanded.Serialization.JsonSerializer,
+  database: "commanded_scheduler_test",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost"
+
 config :commanded, Commanded.EventStore.Adapters.InMemory,
   serializer: Commanded.Serialization.JsonSerializer
