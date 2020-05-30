@@ -40,6 +40,9 @@ defmodule Commanded.Scheduler.Scheduling do
 
   # Schedule the command to be triggered at the given due date/time.
   def handle(%ScheduledOnce{} = event, _metadata) do
+    IO.puts "********************--------------------*******"
+    IO.inspect event
+    IO.puts "********************--------------------*******"
     %ScheduledOnce{
       schedule_uuid: schedule_uuid,
       name: name,
@@ -123,6 +126,9 @@ defmodule Commanded.Scheduler.Scheduling do
   end
 
   defp schedule_once(schedule_uuid, name, due_at) do
+    IO.puts "------------------- ****************** schedule_once"
+    IO.inspect schedule_uuid
+    IO.inspect name
     trigger_schedule = %TriggerSchedule{schedule_uuid: schedule_uuid, name: name}
 
     case Jobs.schedule_once({schedule_uuid, name}, Dispatcher, trigger_schedule, due_at) do
