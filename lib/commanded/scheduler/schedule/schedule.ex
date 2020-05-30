@@ -70,11 +70,17 @@ defmodule Commanded.Scheduler.Schedule do
 
   def execute(%Schedule{}, %ScheduleBatch{}), do: {:error, :already_scheduled}
 
-  def execute(%Schedule{schedule_uuid: nil}, %TriggerSchedule{}), do: {:error, :no_schedule}
+  def execute(%Schedule{schedule_uuid: nil}, %TriggerSchedule{}) do
+    IO.puts "-------------------------------------------------------- execute 1"
+    {:error, :no_schedule}
+  end
 
   # Trigger a scheduled command
   def execute(%Schedule{} = schedule, %TriggerSchedule{name: name}) do
+    IO.puts "-------------------------------------------------------- execute 2"
     %Schedule{schedule_uuid: schedule_uuid, scheduled: scheduled} = schedule
+    IO.inspect scheduled
+    IO.inspect schedule_uuid
 
     case Map.get(scheduled, name) do
       nil ->
