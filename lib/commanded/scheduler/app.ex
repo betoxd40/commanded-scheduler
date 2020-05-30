@@ -2,7 +2,8 @@ defmodule Commanded.Scheduler.App do
   use Commanded.Application,
     otp_app: :commanded_scheduler,
     event_store: [
-      adapter: Commanded.EventStore.Adapters.InMemory
+      adapter: Commanded.EventStore.Adapters.EventStore,
+      event_store: Commanded.Scheduler.EventStore
     ],
     pub_sub: :local,
     registry: :local

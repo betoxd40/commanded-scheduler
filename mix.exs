@@ -44,6 +44,7 @@ defmodule Commanded.Scheduler.Mixfile do
     [
       {:commanded, ">= 1.1.0", runtime: false},
       {:commanded_ecto_projections, ">= 1.0.0"},
+      {:commanded_eventstore_adapter, "~> 1.1"},
       {:crontab, "~> 1.1"},
       {:ecto, "~> 3.2"},
       {:elixir_uuid, "~> 1.2"},
