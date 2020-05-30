@@ -15,7 +15,7 @@ config :commanded_scheduler, Commanded.Scheduler.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "commanded_scheduler_test",
   username: "postgres",
-  password: "postgres",
+  password: "yanes6514",
   hostname: "localhost"
 
 config :commanded, event_store_adapter: Commanded.EventStore.Adapters.InMemory

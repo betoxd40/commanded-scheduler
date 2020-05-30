@@ -1,7 +1,9 @@
 defmodule Commanded.Scheduler.Scheduling do
   @moduledoc false
 
-  use Commanded.Event.Handler, name: "Commanded.Scheduler.Scheduling"
+  use Commanded.Event.Handler,
+    name: "Commanded.Scheduler.Scheduling",
+    application: Commanded.Scheduler.App
 
   require Logger
 
@@ -60,7 +62,10 @@ defmodule Commanded.Scheduler.Scheduling do
 
     Logger.debug(fn -> "Attempting to dispatch scheduled command: #{inspect(command)}" end)
 
-    router().dispatch(command, causation_id: event_id, correlation_id: correlation_id)
+    Commanded.Scheduler.App.dispatch(command,
+      causation_id: event_id,
+      correlation_id: correlation_id
+    )
   end
 
   # Execute the command using the configured router when triggered at its

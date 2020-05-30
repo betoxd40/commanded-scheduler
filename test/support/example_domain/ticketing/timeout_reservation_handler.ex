@@ -1,7 +1,7 @@
 defmodule ExampleDomain.TimeoutReservationHandler do
   @moduledoc false
 
-  use Commanded.Event.Handler, name: __MODULE__
+  use Commanded.Event.Handler, name: __MODULE__, application: Commanded.Scheduler.App
 
   alias Commanded.Scheduler.ScheduleOnce
   alias ExampleDomain.AppRouter
@@ -22,6 +22,6 @@ defmodule ExampleDomain.TimeoutReservationHandler do
       due_at: expires_at
     }
 
-    AppRouter.dispatch(schedule_once)
+    Commanded.Scheduler.App.dispatch(schedule_once)
   end
 end

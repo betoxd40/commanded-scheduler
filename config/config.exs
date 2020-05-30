@@ -6,4 +6,11 @@ config :commanded_scheduler,
   max_retries: 3,
   job_timeout: :infinity
 
+config :commanded_scheduler, Commanded.Scheduler.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.InMemory
+  ],
+  pub_sub: :local,
+  registry: :local
+
 import_config "#{Mix.env()}.exs"
