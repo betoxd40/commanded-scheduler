@@ -1,6 +1,6 @@
 defmodule Commanded.Scheduler.Job do
   @moduledoc false
-  
+
   use GenServer
 
   require Logger
@@ -39,11 +39,12 @@ defmodule Commanded.Scheduler.Job do
 
     case result do
       :ok ->
+        IO.puts "#{inspect(describe(state))} completed"
         Logger.debug(fn -> describe(state) <> " completed" end)
         {:stop, :shutdown, state}
 
       {:error, reason} ->
-        Logger.warn(fn -> describe(state) <> " failed due to: #{inspect reason}" end)
+        Logger.error(fn -> describe(state) <> " failed due to: #{inspect reason}" end)
         retry(state)
     end
   end
