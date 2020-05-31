@@ -10,8 +10,8 @@ defmodule Commanded.Scheduler.Application do
       Commanded.Scheduler.Repo,
       Commanded.Scheduler.JobSupervisor,
       Commanded.Scheduler.Jobs,
-      Commanded.Scheduler.Projection,
-      Commanded.Scheduler.Scheduling
+      Commanded.Scheduler.Scheduling,
+      {Commanded.Scheduler.Projection, []}
     ]
 
     opts = [strategy: :one_for_one, name: Commanded.Scheduler.Supervisor]
