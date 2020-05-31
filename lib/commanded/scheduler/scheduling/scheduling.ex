@@ -41,6 +41,7 @@ defmodule Commanded.Scheduler.Scheduling do
   end
 
   def handle(event, metadata) do
+    IO.puts "THIS ALWAYS WILL MATCH"
     IO.inspect event
     IO.inspect metadata
 
