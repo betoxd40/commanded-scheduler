@@ -26,10 +26,7 @@ defmodule Commanded.Scheduler.Schedule do
   # Schedule a one-off command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once) do
     IO.puts("execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once")
-    test = schedule_once(schedule, Map.from_struct(once))
-    IO.inspect(test)
-    IO.puts("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    test
+    %ScheduledOnce{}
   end
 
   def execute(%Schedule{}, %ScheduleOnce{}), do: {:error, :already_scheduled}
@@ -175,6 +172,7 @@ defmodule Commanded.Scheduler.Schedule do
   defp schedule_once(%Schedule{} = schedule, once) when is_map(once) do
     schedule(schedule, ScheduledOnce, once)
   end
+
 
   defp schedule_recurring(%Schedule{} = schedule, recurring) when is_map(recurring) do
     schedule(schedule, ScheduledRecurring, recurring)
