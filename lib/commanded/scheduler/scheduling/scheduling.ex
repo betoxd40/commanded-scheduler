@@ -3,7 +3,8 @@ defmodule Commanded.Scheduler.Scheduling do
 
   use Commanded.Event.Handler,
     name: "Commanded.Scheduler.Scheduling",
-    application: Commanded.Scheduler.App
+    application: Commanded.Scheduler.App,
+    consistency: :strong
 
   require Logger
 
