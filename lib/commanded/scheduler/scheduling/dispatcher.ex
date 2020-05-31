@@ -11,7 +11,7 @@ defmodule Commanded.Scheduler.Dispatcher do
     IO.puts "Attempting to trigger schedule #{inspect schedule_uuid} #{inspect command}"
     Logger.debug(fn -> "Attempting to trigger schedule #{inspect schedule_uuid}" end)
 
-    test = Commanded.Scheduler.App.dispatch(command)
+    test = Commanded.Scheduler.App.dispatch(command, consistency: :strong)
     IO.inspect test
     IO.puts "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     test

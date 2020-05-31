@@ -25,6 +25,7 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a one-off command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once) do
+    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once"
     schedule_once(schedule, Map.from_struct(once))
   end
 
@@ -32,6 +33,8 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a recurring command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleRecurring{} = recurring) do
+    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleRecurring{} = once"
+
     schedule_recurring(schedule, Map.from_struct(recurring))
   end
 
@@ -39,6 +42,7 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a batch of commands
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleBatch{} = batch) do
+    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleBatch{} = batch"
     %ScheduleBatch{
       schedule_uuid: schedule_uuid,
       schedule_once: schedule_once,
@@ -70,8 +74,8 @@ defmodule Commanded.Scheduler.Schedule do
 
   def execute(%Schedule{}, %ScheduleBatch{}), do: {:error, :already_scheduled}
 
-  def execute(%Schedule{schedule_uuid: nil}, %TriggerSchedule{}) do
-    IO.puts "-------------------------------------------------------- execute 1"
+  def execute(%Schedule{schedule_uuid: nil}, %TriggerSchedule{} = what) do
+    IO.puts "-------------------------------------------------------- execute 1 #{inspect(what)}"
     {:error, :no_schedule}
   end
 
