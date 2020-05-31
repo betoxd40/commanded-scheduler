@@ -20,6 +20,7 @@ defmodule Commanded.Scheduler.ScheduledOnce do
 
   defimpl Commanded.Serialization.JsonDecoder do
     def decode(%ScheduledOnce{} = once) do
+      IO.puts "IT SEEMS THAT I'M TRIGGERING THIS"
       %ScheduledOnce{command: command, command_type: command_type, due_at: due_at} = once
 
       %ScheduledOnce{
