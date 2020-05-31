@@ -25,9 +25,6 @@ defmodule Commanded.Scheduler.Scheduling do
   Reschedule all existing schedules on start.
   """
   def init do
-    IO.puts "++++------+++++++++++++++++++++"
-    IO.puts "INIIIIIIIIIIIIIIIIIIIIIIIIIIIT #{Repo.all(Schedule)}"
-    IO.puts "++++------+++++++++++++++++++++"
     for schedule <- Repo.all(Schedule) do
       %Schedule{
         schedule_uuid: schedule_uuid,
@@ -118,7 +115,7 @@ defmodule Commanded.Scheduler.Scheduling do
         :skip
 
       _ ->
-        Logger.error(fn ->
+        Logger.warn(fn ->
           "Failed to handle event " <>
             inspect(event_id) <> " (##{inspect(event_number)}) due to: " <> inspect(error)
         end)
