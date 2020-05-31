@@ -4,8 +4,7 @@ defmodule Commanded.Scheduler.Projection do
   use Commanded.Projections.Ecto,
     name: "Commanded.Scheduler.Projection",
     repo: Commanded.Scheduler.Repo,
-    application: Commanded.Scheduler.App,
-    consistency: :strong
+    application: Commanded.Scheduler.App 
 
   defmodule Schedule do
     @moduledoc false
