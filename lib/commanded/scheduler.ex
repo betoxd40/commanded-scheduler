@@ -51,6 +51,10 @@ defmodule Commanded.Scheduler do
     Commanded.Scheduler.App.dispatch(schedule_once)
   end
 
+  def schedule_once(_, _, _, _) do
+    IO.puts "no entra ni vergas esto"
+  end
+
   @doc """
   Schedule multiple one-off commands in a single batch.
 
