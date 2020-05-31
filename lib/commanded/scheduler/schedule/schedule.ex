@@ -126,6 +126,7 @@ defmodule Commanded.Scheduler.Schedule do
   # state mutators
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduledOnce{} = once) do
+    IO.puts "applyapplyapplyapplyapplyapplyapplyapply Scheduled Once"
     %ScheduledOnce{
       schedule_uuid: schedule_uuid,
       name: name,
@@ -141,6 +142,8 @@ defmodule Commanded.Scheduler.Schedule do
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduledRecurring{} = recurring) do
+    IO.puts "applyapplyapplyapplyapplyapplyapplyapply Scheduled Recurring"
+
     %ScheduledRecurring{
       schedule_uuid: schedule_uuid,
       name: name,
@@ -156,10 +159,14 @@ defmodule Commanded.Scheduler.Schedule do
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduleTriggered{name: name}) do
+    IO.puts "applyapplyapplyapplyapplyapplyapplyapply ScheduleTriggered"
+
     %Schedule{schedule | scheduled: Map.delete(scheduled, name)}
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduleCancelled{name: name}) do
+    IO.puts "applyapplyapplyapplyapplyapplyapplyapply ScheduleCancelled"
+
     %Schedule{schedule | scheduled: Map.delete(scheduled, name)}
   end
 
@@ -181,7 +188,9 @@ defmodule Commanded.Scheduler.Schedule do
       |> Map.put(:name, name)
       |> Map.put(:command_type, command_type(once_or_recurring))
     else
-      reply -> reply
+      reply ->
+        IO.puts "NO CREO QUE ENTRRRRRRRRRRRRRRRRRRRR"
+        reply
     end
   end
 
