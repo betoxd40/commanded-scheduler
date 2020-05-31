@@ -9,7 +9,6 @@ defmodule Commanded.Scheduler.ScheduledOnce do
           command_type: String.t(),
           due_at: NaiveDateTime.t()
         }
-  @derive Jason.Encoder
   defstruct [
     :schedule_uuid,
     :name,
@@ -17,11 +16,4 @@ defmodule Commanded.Scheduler.ScheduledOnce do
     :command_type,
     :due_at
   ]
-
-  defimpl Commanded.Serialization.JsonDecoder do
-    def decode(%ScheduledOnce{} = once) do
-      IO.puts "IT SEEMS THAT I'M TRIGGERING THIS"
-      once
-    end
-  end
 end
