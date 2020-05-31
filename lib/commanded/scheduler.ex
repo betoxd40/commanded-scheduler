@@ -46,6 +46,8 @@ defmodule Commanded.Scheduler do
       due_at: due_at
     }
 
+    IO.puts "DISPATCH SCHEDULE_ONCESCHEDULE_ONCESCHEDULE_ONCE"
+    IO.inspect schedule_once
     Commanded.Scheduler.App.dispatch(schedule_once)
   end
 
