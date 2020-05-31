@@ -35,6 +35,7 @@ defmodule Commanded.Scheduler.Projection do
   alias Commanded.Scheduler.Projection.Schedule
 
   project %ScheduledOnce{} = once, fn multi ->
+    IO.puts "projeeeeeeeeeeeection ScheduledOnce{}ScheduledOnce{}"
     %ScheduledOnce{
       schedule_uuid: schedule_uuid,
       name: name,

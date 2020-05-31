@@ -25,10 +25,10 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a one-off command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once) do
-    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once"
+    IO.puts("execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once")
     test = schedule_once(schedule, Map.from_struct(once))
-    IO.inspect test
-    IO.puts "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    IO.inspect(test)
+    IO.puts("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     test
   end
 
@@ -36,7 +36,7 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a recurring command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleRecurring{} = recurring) do
-    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleRecurring{} = once"
+    IO.puts("execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleRecurring{} = once")
 
     schedule_recurring(schedule, Map.from_struct(recurring))
   end
@@ -45,7 +45,8 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a batch of commands
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleBatch{} = batch) do
-    IO.puts "execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleBatch{} = batch"
+    IO.puts("execue %Schedule{schedule_uuid: nil} = schedule, %ScheduleBatch{} = batch")
+
     %ScheduleBatch{
       schedule_uuid: schedule_uuid,
       schedule_once: schedule_once,
@@ -78,16 +79,16 @@ defmodule Commanded.Scheduler.Schedule do
   def execute(%Schedule{}, %ScheduleBatch{}), do: {:error, :already_scheduled}
 
   def execute(%Schedule{schedule_uuid: nil}, %TriggerSchedule{} = what) do
-    IO.puts "-------------------------------------------------------- execute 1 #{inspect(what)}"
+    IO.puts("-------------------------------------------------------- execute 1 #{inspect(what)}")
     {:error, :no_schedule}
   end
 
   # Trigger a scheduled command
   def execute(%Schedule{} = schedule, %TriggerSchedule{name: name}) do
-    IO.puts "-------------------------------------------------------- execute 2"
+    IO.puts("-------------------------------------------------------- execute 2")
     %Schedule{schedule_uuid: schedule_uuid, scheduled: scheduled} = schedule
-    IO.inspect scheduled
-    IO.inspect schedule_uuid
+    IO.inspect(scheduled)
+    IO.inspect(schedule_uuid)
 
     case Map.get(scheduled, name) do
       nil ->
@@ -126,13 +127,14 @@ defmodule Commanded.Scheduler.Schedule do
   # state mutators
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduledOnce{} = once) do
-    IO.puts "applyapplyapplyapplyapplyapplyapplyapply Scheduled Once"
     %ScheduledOnce{
       schedule_uuid: schedule_uuid,
       name: name,
       command: command,
       command_type: command_type
     } = once
+
+    IO.puts("applyapplyapplyapplyapplyapplyapplyapply Scheduled Once #{inspect(once)}")
 
     %Schedule{
       schedule
@@ -142,7 +144,7 @@ defmodule Commanded.Scheduler.Schedule do
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduledRecurring{} = recurring) do
-    IO.puts "applyapplyapplyapplyapplyapplyapplyapply Scheduled Recurring"
+    IO.puts("applyapplyapplyapplyapplyapplyapplyapply Scheduled Recurring")
 
     %ScheduledRecurring{
       schedule_uuid: schedule_uuid,
@@ -159,13 +161,13 @@ defmodule Commanded.Scheduler.Schedule do
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduleTriggered{name: name}) do
-    IO.puts "applyapplyapplyapplyapplyapplyapplyapply ScheduleTriggered"
+    IO.puts("applyapplyapplyapplyapplyapplyapplyapply ScheduleTriggered")
 
     %Schedule{schedule | scheduled: Map.delete(scheduled, name)}
   end
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduleCancelled{name: name}) do
-    IO.puts "applyapplyapplyapplyapplyapplyapplyapply ScheduleCancelled"
+    IO.puts("applyapplyapplyapplyapplyapplyapplyapply ScheduleCancelled")
 
     %Schedule{schedule | scheduled: Map.delete(scheduled, name)}
   end
@@ -189,7 +191,7 @@ defmodule Commanded.Scheduler.Schedule do
       |> Map.put(:command_type, command_type(once_or_recurring))
     else
       reply ->
-        IO.puts "NO CREO QUE ENTRRRRRRRRRRRRRRRRRRRR"
+        IO.puts("NO CREO QUE ENTRRRRRRRRRRRRRRRRRRRR")
         reply
     end
   end
