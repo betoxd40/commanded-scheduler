@@ -29,15 +29,7 @@ defmodule Commanded.Scheduler.Schedule do
     test = schedule_once(schedule, Map.from_struct(once))
     IO.inspect(test)
     IO.puts("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    %ScheduledOnce{
-      command: %{
-        loan_id: "f40235e7-3929-4c79-8527-0bcd059cfd95"
-      },
-      command_type: "Elixir.BlockFi.Thor.Domain.Commands.RecalculateStatus",
-      due_at: ~N[2020-06-03 13:55:22.676384],
-      name: "@default0",
-      schedule_uuid: "cure-period-955591b1-4615-4693-86cb-e094bd800b18"
-    }
+    test
   end
 
   def execute(%Schedule{}, %ScheduleOnce{}), do: {:error, :already_scheduled}
@@ -143,7 +135,6 @@ defmodule Commanded.Scheduler.Schedule do
     } = once
 
     IO.puts("applyapplyapplyapplyapplyapplyapplyapply Scheduled Once")
-    IO.inspect once
 
     %Schedule{
       schedule
