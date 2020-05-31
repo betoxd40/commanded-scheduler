@@ -118,7 +118,7 @@ defmodule Commanded.Scheduler.Scheduling do
         :skip
 
       _ ->
-        Logger.warn(fn ->
+        Logger.error(fn ->
           "Failed to handle event " <>
             inspect(event_id) <> " (##{inspect(event_number)}) due to: " <> inspect(error)
         end)
