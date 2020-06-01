@@ -4,6 +4,7 @@ defmodule Commanded.Scheduler.Scheduling do
   use Commanded.Event.Handler,
     name: "Commanded.Scheduler.Scheduling",
     application: Commanded.Scheduler.App,
+    start_from: :origin,
     consistency: :strong
 
   require Logger
