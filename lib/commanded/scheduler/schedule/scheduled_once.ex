@@ -9,6 +9,7 @@ defmodule Commanded.Scheduler.ScheduledOnce do
           command_type: String.t(),
           due_at: NaiveDateTime.t()
         }
+  @derive Jason.Encoder
   defstruct [
     :schedule_uuid,
     :name,
