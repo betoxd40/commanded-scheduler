@@ -37,15 +37,6 @@ defmodule Commanded.Scheduler.Scheduling do
       schedule_once(schedule_uuid, name, due_at)
     end
 
-    IO.puts " i suppose that i'll return :ok on INIIIIIIIIT"
-    :ok
-  end
-
-  def handle(event, metadata) do
-    IO.puts "THIS ALWAYS WILL MATCH"
-    IO.inspect event
-    IO.inspect metadata
-
     :ok
   end
 
