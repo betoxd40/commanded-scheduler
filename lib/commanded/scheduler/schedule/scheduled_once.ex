@@ -18,10 +18,4 @@ defmodule Commanded.Scheduler.ScheduledOnce do
     :due_at
   ]
 
-  defimpl Commanded.Serialization.JsonDecoder do
-    def decode(%ScheduledOnce{} = once) do
-      IO.puts "IT SEEMS THAT I'M TRIGGERING THIS"
-      once
-    end
-  end
 end

@@ -132,7 +132,7 @@ defmodule Commanded.Scheduler.Schedule do
       command_type: command_type
     } = once
 
-    IO.puts("applyapplyapplyapplyapplyapplyapplyapply Scheduled Once")
+    IO.puts("apply Scheduled Once state mutator to aggregate Schedule")
 
     %Schedule{
       schedule
