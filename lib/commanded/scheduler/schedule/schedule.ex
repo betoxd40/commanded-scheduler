@@ -25,9 +25,7 @@ defmodule Commanded.Scheduler.Schedule do
 
   # Schedule a one-off command
   def execute(%Schedule{schedule_uuid: nil} = schedule, %ScheduleOnce{} = once) do
-    schedule
-    |> Multi.new()
-    |> Multi.execute(fn _ -> schedule_once(schedule, Map.from_struct(once)) end)
+    schedule_once(schedule, Map.from_struct(once))
   end
 
   def execute(%Schedule{}, %ScheduleOnce{}), do: {:error, :already_scheduled}
