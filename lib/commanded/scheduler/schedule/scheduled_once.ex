@@ -18,4 +18,16 @@ defmodule Commanded.Scheduler.ScheduledOnce do
     :due_at
   ]
 
+  defimpl Commanded.Serialization.JsonDecoder do
+    def decode(%ScheduledOnce{} = once) do
+      IO.puts "decoding Commanded.Serialization.JsonDecoder"
+      %ScheduledOnce{command: command, command_type: command_type, due_at: due_at} = once
+
+      %ScheduledOnce{
+        once
+        | command: Convert.to_struct(command_type, command),
+          due_at: NaiveDateTime.from_iso8601!(due_at)
+      }
+    end
+  end
 end

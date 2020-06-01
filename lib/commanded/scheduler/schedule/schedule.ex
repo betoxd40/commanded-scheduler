@@ -122,6 +122,14 @@ defmodule Commanded.Scheduler.Schedule do
   # Cancel named scheduled command
   def execute(%Schedule{} = schedule, %CancelSchedule{name: name}), do: cancel(schedule, name)
 
+  def handle(event, metadata) do
+    IO.puts "THIS ALWAYS WILL MATCH"
+    IO.inspect event
+    IO.inspect metadata
+
+    :ok
+  end
+
   # state mutators
 
   def apply(%Schedule{scheduled: scheduled} = schedule, %ScheduledOnce{} = once) do
